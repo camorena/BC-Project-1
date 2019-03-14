@@ -1,6 +1,23 @@
 body {
-    background-color: blueviolet;
+    background-color:rgb(255, 255, 255);
 }
 .well {
-    background-color: aqua;
+    background-color: rgb(52, 52, 52);
+    /*opacity: .9;*/
+    
+}
+p{
+    color: white;
+    
+}
+footer {
+    background-color: #555;
+    color: white;
+    padding: 16px;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    left: 0;
+
 }
