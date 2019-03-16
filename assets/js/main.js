@@ -14,9 +14,8 @@ $(document).ready(function () {
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     var globalUser;
     var userPref;
-
-    //$(document.body).on("click", "#news", function () {
-    // Build the query URL for the ajax request to the NYT API
+    var zipCode;
+    var ipAddress;
     var queryURL = newsQueryURL();
 
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
@@ -74,10 +73,10 @@ function updatePage(NYTData) {
         var pubDate = article.pub_date;
         id = "news" + (i + 1);
 
-        var $newsList = $('<div id=' + id + ' class="row" >');
+        var $newsList = $('<div class="row news" >');
 
         // Add the newly created element to the DOM
-        $("#news").append($newsList);
+        $(".news").append($newsList);
 
         if (headline && headline.main) {
             $("#" + id).append("<h5>" + headline + "</h5>");
@@ -170,9 +169,53 @@ $(document).on("click", "#signOutButton", function (event) {
         });
     Redirect("index.html");
 });
-var zipCode;
-//////  GET IP ADDRESS ///////
-var ipAddress;
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        // if()
+        globalUser = user;
+        window.location = "preferences.html";
+    }
+});
+ui.start("#firebaseui-auth-container", uiConfig);
+function renderButtons() {
+    // Deleting the choice buttons prior to adding new choice buttons
+    // (this is necessary otherwise we will have repeat buttons)
+    $("#buttons-view").empty();
+
+    // Looping through the array of choices for (var i = 0; i
+    < newsPref.length; i++) { // Then dynamicaly generating buttons for each choice in the array. // This code $( "<button>")
+        is all jQuery needs to create the start and end tag. (<button>
+        </button>) var a = $("
+            < button ></button > "); // Adding a class a.addClass("newsPreference"); // Adding a data-attribute with a value of the choice at
+  index i a.attr("data-val", newsPref[i]); // Adding the id of newsChoice to every news button a.attr("id", "newsChoice");
+        // Providing the button's text with a value of the choice at index i a.text(newsPref[i]); // Adding the button to the
+        HTML console.log(newsPref[i]); $("#buttons-view").append(a);
+    } console.log(newsPref);
+} renderButtons(); // adds new
+user created news buttons to the page $("#addNewsButton").on("click", function (event) { // This line will grab the text
+    from the input box event.preventDefault(); var newChoice = $("#news-input").val().trim(); // The choice from the textbox
+    is then added to our newsPref array newsPref.push(newChoice); // calling renderButtons handles the processing of our
+    newsPref array renderButtons();
+}); // When the user clicks a news preference button the preference is added to firebase
+$(document).on("click", ".newsPreference", function (event) {
+    event.preventDefault(); var choice = $(this).attr("data-val");
+    newsPrefReff.push(choice); console.log("You clicked a button" + choice);
+}); });
+
+/////// GET ZipCode ///////
+function callback(response) {
+    console.log(response.postal);
+    zipCode = response.postal;
+}
+
+
+
+$.ajax({
+    method: "GET",
+    url: "https://geoip-db.com/jsonp/",
+    dataType: "jsonp"
+});
 
 $.getJSON("https://api.ipify.org?format=json", function (data) {
     ipAddress = data.ip;
