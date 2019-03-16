@@ -42,7 +42,119 @@
           console.log("----->" + newsPrefReff);
         }
       });
+<<<<<<< HEAD
   </script>
+=======
+        function renderButtons() {
+          // Deleting the choice buttons prior to adding new choice buttons
+          // (this is necessary otherwise we will have repeat buttons)
+          $("#buttons-view").empty();
+
+<<<<<<< HEAD
+          // Looping through the array of choices
+          for (var i = 0; i < newsPref.length; i++) {
+            // Then dynamicaly generating buttons for each choice in the array.
+            // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+            var a = $("<button></button>");
+            // Adding a class
+            a.addClass("newsPreference");
+            // Adding a data-attribute with a value of the choice at index i
+            a.attr("data-val", newsPref[i]);
+            // Adding the id of newsChoice to every news button
+            a.attr("id", "newsChoice");
+            // Providing the button's text with a value of the choice at index i
+            a.text(newsPref[i]);
+            // Adding the button to the HTML
+            console.log(newsPref[i]);
+            $("#buttons-view").append(a);
+          }
+          console.log(newsPref);
+        }
+        renderButtons();
+
+        // adds new user created news buttons to the page
+        $("#addNewsButton").on("click", function(event) {
+          // This line will grab the text from the input box
+          event.preventDefault();
+          var newChoice = $("#news-input")
+            .val()
+            .trim();
+          // The choice from the textbox is then added to our newsPref array
+          newsPref.push(newChoice);
+=======
+  <title>Preferences</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+        
+        <style>
+                body {
+                  background: url(assets/image/dan-gold-1232227-unsplash1.png);
+                  background-size: 100%;
+                  background-repeat: repeat;
+                  width: 100%;
+                }
+              </style>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">MySnapShot</a>
+      <span style="font-size: 2.3em; color: rgb(255, 255, 255); margin-right: 10px;">
+           <i class="fas fa-globe fa-1x"></i>
+      </span>     
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="preferences.html">Preferences</a></li>
+        <li><a href="#">Sign In</a></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+>>>>>>> master
+
+          // calling renderButtons handles the processing of our newsPref array
+          renderButtons();
+        });
+
+        // When the user clicks a news preference button the preference is added to firebase
+        $(document).on("click", ".newsPreference", function(event) {
+          event.preventDefault();
+          var choice = $(this).attr("data-val");
+          newsPrefReff.push(choice);
+          console.log("You clicked a button" + choice);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <style>
+      body {
+        background: url(assets/image/dan-gold-1232227-unsplash1.png);
+        background-size: 100%;
+        background-repeat: repeat;
+        width: 100%;
+      }
+    </style>
+>>>>>>> 7ab6e7dcde059c12fe320222c8780c52ce0ac35f
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $(document).ready(function () {
 
     // Initialize Firebase
@@ -220,3 +221,8 @@ $.ajax({
 $.getJSON("https://api.ipify.org?format=json", function (data) {
     ipAddress = data.ip;
 });
+=======
+//alert("Hi Brian!");
+
+//console.log("Hi Brian!");
+>>>>>>> 7ab6e7dcde059c12fe320222c8780c52ce0ac35f
