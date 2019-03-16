@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Query topic button 
 $(document).ready(function () {
     //$(document.body).on("click", "#news", function () {
@@ -94,3 +95,8 @@ function updatePage(NYTData) {
         //$articleList.append($articleListItem);
     }
 }
+=======
+//alert("Hi Brian!");
+
+//console.log("Hi Brian!");
+>>>>>>> 3d897bcef0505f50d49872a8bc2ad4788bc5872f
