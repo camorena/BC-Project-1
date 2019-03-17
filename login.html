@@ -25,7 +25,7 @@
       rel="stylesheet"
       href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
     />
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/app.js"></script>
     <script>
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -35,6 +35,18 @@
         }
       });
       ui.start("#firebaseui-auth-container", uiConfig);
+
+      /////// GET ZipCode ///////
+      function callback(response) {
+        console.log(response.postal);
+        zipCode = response.postal;
+      }
+
+      $.ajax({
+        method: "GET",
+        url: "https://geoip-db.com/jsonp/",
+        dataType: "jsonp"
+      });
     </script>
     <style>
       body {
