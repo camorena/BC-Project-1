@@ -42,7 +42,7 @@ function newsQueryURL() {
     var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
     // Set the API key
     var queryParams = {
-        "api-key": "XIW58kpN63We5nGfdQE45koBdpNVyKvU"
+        "api-key": "xD3kkxS8Ju3BRR99VVaBCrAdJVFinyEg"
     };
     // Grab user preferences from DB is user registered 
     //
@@ -95,7 +95,7 @@ function getWeather() {
     var apiKey = "59e2552e8cb340c483081480d54a2aca";
     var zip = "55101";
 
-    var api_url = 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + '&units=imperial&appid=' + apiKey + "&JSONP=displayWeather";
+    var api_url = 'https://api.openweathermap.org/data/2.5/weather?zip=' + zip + '&units=imperial&appid=' + apiKey + "&JSONP=displayWeather";
     $.ajax({
         url: api_url,
         method: "GET"
@@ -112,7 +112,7 @@ function displayWeather(data) {
     var location = data.name;
     var desc = data.weather[0].description;
     var icon = data.weather[0].icon;
-    var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png"
+    var iconUrl = "https://openweathermap.org/img/w/" + icon + ".png"
     console.log("ICON  ->", iconUrl);
 
     $('.city').text(location);
