@@ -23,13 +23,6 @@ $(document).ready(function () {
         method: "GET"
     }).then(displayNews);
 
-    var ipAddress;
-
-    $.getJSON("https://api.ipify.org?format=json", function (data) {
-        ipAddress = data.ip;
-        console.log("IP ADDRESS ", ipAddress);
-    });
-
     getWeather();
 
 });
@@ -42,12 +35,12 @@ function newsQueryURL() {
     var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
     // Set the API key
     var queryParams = {
-        "api-key": "xD3kkxS8Ju3BRR99VVaBCrAdJVFinyEg"
+        "api-key": "XIW58kpN63We5nGfdQE45koBdpNVyKvU"
     };
     // Grab user preferences from DB is user registered 
     //
     // Set user parameters for query
-    queryParams.q = "sports";
+    queryParams.q = "technology";
     //
     return queryURL + $.param(queryParams);
 }
@@ -83,15 +76,7 @@ function displayNews(newsData) {
 }
 
 
-/* you can use only http:// protocol because OpenStreetMap works only via http for free */
-/* that's why i use https://cors-anywhere.herokuapp.com/ */
-
-
-
 function getWeather() {
-    //$.get("https://ipapi.co/json", function (data) {
-    //    getWeather(data.city);
-    //});
     var apiKey = "59e2552e8cb340c483081480d54a2aca";
     var zip = "55101";
 
@@ -112,11 +97,11 @@ function displayWeather(data) {
     var location = data.name;
     var desc = data.weather[0].description;
     var icon = data.weather[0].icon;
-    var iconUrl = "https://openweathermap.org/img/w/" + icon + ".png"
+    var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png"
     console.log("ICON  ->", iconUrl);
 
     $('.city').text(location);
-    $('.temp').text(tempr.toFixed(0) + '°');
+    $('.temp').text(tempr.toFixed(0) + '° F');
     var $weather_icon = $('<hr><img class="icon" src="' + iconUrl + '">');
     $(".city").append($weather_icon);
 }
