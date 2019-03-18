@@ -1,14 +1,7 @@
 $(document).ready(function () {
-    var zipCode;
     var ipAddress;
     var newsUrl = newsQueryURL();
     var newPrefReff;
-    var zipcode = '55101';
-    $("#userpref").hide();
-
-
-
-    $(".checkbox").prop("checked", "checked"); //set Metric by Default
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (!user) {
@@ -99,27 +92,15 @@ function getWeather() {
     //$.get("https://ipapi.co/json", function (data) {
     //    getWeather(data.city);
     //});
-
-    var lat, lon, api_url;
     var apiKey = "59e2552e8cb340c483081480d54a2aca";
+    var zip = "55101";
 
-    if ("geolocation" in navigator) {
+    var api_url = 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + '&units=imperial&appid=' + apiKey + "&JSONP=displayWeather";
+    $.ajax({
+        url: api_url,
+        method: "GET"
+    }).then(displayWeather);
 
-        navigator.geolocation.getCurrentPosition(gotLocation);
-
-        function gotLocation(position) {
-            lat = position.coords.latitude;
-            lon = position.coords.longitude;
-            console.log("LATITUD ->",lat,"LONGITUD -> ",lon);
-            var api_url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=' + apiKey + "&JSONP=displayWeather";
-            $.ajax({
-                url: api_url,
-                method: "GET"
-            }).then(displayWeather);
-        }
-    } else {
-        alert('Your browser doesnt support geolocation. Sorry.');
-    }
 }
 
 
@@ -127,6 +108,7 @@ function displayWeather(data) {
     console.log("WEATHER ->", data);
 
     var tempr = data.main.temp;
+
     var location = data.name;
     var desc = data.weather[0].description;
     var icon = data.weather[0].icon;
@@ -134,7 +116,7 @@ function displayWeather(data) {
     console.log("ICON  ->", iconUrl);
 
     $('.city').text(location);
-    $('.temp').text(tempr + '°');
-    var $weather_icon = $('<img class="icon" src="' + iconUrl +'">');
+    $('.temp').text(tempr.toFixed(0) + '°');
+    var $weather_icon = $('<hr><img class="icon" src="' + iconUrl + '">');
     $(".city").append($weather_icon);
 }
