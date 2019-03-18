@@ -4,18 +4,18 @@
 <head>
   <title>Preferences</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="assets/js/main.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-    crossorigin="anonymous">
+  <script src="assets/js/app.js"></script>
   <style>
     body {
       background: url(assets/image/dan-gold-1232227-unsplash1.png);
@@ -24,25 +24,10 @@
       width: 100%;
     }
   </style>
+
 </head>
 
 <body>
-  <script>
-    var newPrefReff;
-    $(document).ready(function () {
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (!user) {
-          window.location = "index.html";
-        } else {
-          globalUser = user;
-          console.log("global user: " + globalUser);
-          newsPrefReff = database.ref(
-            "/users/" + globalUser.uid + "/newsPreferences/"
-          );
-          console.log("----->" + newsPrefReff);
-        }
-      });
-  </script>
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -56,6 +41,7 @@
         <span style="font-size: 2.3em; color: rgb(255, 255, 255); margin-right: 10px;">
           <i class="fas fa-globe fa-1x"></i>
         </span>
+        <a class="navbar-brand" href="index.html">MySnapShot</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -69,7 +55,7 @@
             <a href="login.html">Sign In</a>
           </li>
           <li>
-            <a href="#">Sign Out</a>
+            <a id "signOutButton" href="#">Sign Out</a>
           </li>
         </ul>
 
@@ -85,6 +71,7 @@
   <footer class="container-fluid text-center">
     <p>CopyRights 2019</p>
   </footer>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
-
 </html>
